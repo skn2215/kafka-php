@@ -557,7 +557,7 @@ class Process
             foreach ($consumerOffsets as $topic => $value) {
                 foreach ($value as $partId => $offset) {
                     if (isset($lastOffsets[$topic][$partId]) && $lastOffsets[$topic][$partId] > $offset) {
-                        $consumerOffsets[$topic][$partId] = $offset + 1;
+                        $consumerOffsets[$topic][$partId] = $offset;
                     }
                 }
             }
@@ -651,10 +651,10 @@ class Process
                 foreach ($part['messages'] as $message) {
                     $this->messages[$topic['topicName']][$part['partition']][] = $message;
 
-                    $offset = $message['offset'];
+                    $offset = $message['offset'] + 1;
                 }
 
-                $consumerOffset = ($part['highwaterMarkOffset'] > $offset) ? ($offset + 1) : $offset;
+                $consumerOffset = $offset;
                 $assign->setConsumerOffset($topic['topicName'], $part['partition'], $consumerOffset);
                 $assign->setCommitOffset($topic['topicName'], $part['partition'], $offset);
             }
