@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Kafka\Consumer;
 
-use Kafka\Broker;
 use Kafka\ConsumerConfig;
 use Kafka\Exception;
 use Kafka\LoggerTrait;
@@ -125,7 +124,7 @@ class Process
                     break;
                 }
 
-                /** @var Broker $broker */
+                /** @var ConsumerBroker $broker */
                 $broker   = $this->getBroker();
                 $isChange = $broker->setData($result['topics'], $result['brokers']);
                 $this->state->succRun(State::REQUEST_METADATA, $isChange);
@@ -139,7 +138,7 @@ class Process
                     break;
                 }
 
-                /** @var Broker $broker */
+                /** @var ConsumerBroker $broker */
                 $broker = $this->getBroker();
                 $broker->setGroupBrokerId($result['coordinatorId']);
 

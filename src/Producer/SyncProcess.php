@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Kafka\Producer;
 
-use Kafka\Broker;
 use Kafka\Exception;
 use Kafka\LoggerTrait;
 use Kafka\ProducerConfig;

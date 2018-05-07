@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Kafka\Consumer;
 
-use Kafka\Broker;
 use Kafka\SingletonTrait;
 use function count;
 
@@ -94,7 +93,7 @@ class Assignment
      */
     public function assign(array $result): void
     {
-        /** @var Broker $broker */
+        /** @var ConsumerBroker $broker */
         $broker = ConsumerBroker::getInstance();
         $topics = $broker->getTopics();
 
