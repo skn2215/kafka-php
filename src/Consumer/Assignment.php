@@ -95,7 +95,7 @@ class Assignment
     public function assign(array $result): void
     {
         /** @var Broker $broker */
-        $broker = Broker::getInstance();
+        $broker = ConsumerBroker::getInstance();
         $topics = $broker->getTopics();
 
         $memberCount = count($result);

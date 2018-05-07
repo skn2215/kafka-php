@@ -356,8 +356,8 @@ class Process
         return ProducerConfig::getInstance();
     }
 
-    private function getBroker(): Broker
+    private function getBroker(): ProducerBroker
     {
-        return Broker::getInstance();
+        return ProducerBroker::getInstance();
     }
 }

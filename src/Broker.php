@@ -16,8 +16,6 @@ use function strpos;
 
 class Broker
 {
-    use SingletonTrait;
-
     /**
      * @var int
      */

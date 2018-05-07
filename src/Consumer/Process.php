@@ -813,9 +813,9 @@ class Process
         return true;
     }
 
-    private function getBroker(): Broker
+    private function getBroker(): ConsumerBroker
     {
-        return Broker::getInstance();
+        return ConsumerBroker::getInstance();
     }
 
     private function getConfig(): ConsumerConfig

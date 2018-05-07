@@ -193,9 +193,9 @@ class SyncProcess
         return $sendData;
     }
 
-    private function getBroker(): Broker
+    private function getBroker(): ProducerBroker
     {
-        return Broker::getInstance();
+        return ProducerBroker::getInstance();
     }
 
     private function getConfig(): ProducerConfig
