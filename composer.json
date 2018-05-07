@@ -1,5 +1,5 @@
 {
-    "name": "skn2215/kafka-php",
+    "name": "skn/kafka-php",
     "description": "Kafka client for php",
     "type": "library",
     "keywords": [
