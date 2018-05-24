@@ -179,22 +179,17 @@ abstract class CommonSocket
      * @param resource $context
      *
      * @return resource
-     * @throws CreateSocketException
      */
     protected function createSocket(string $remoteSocket, $context, ?int &$errno, ?string &$errstr)
     {
-        try {
-            return stream_socket_client(
-                $remoteSocket,
-                $errno,
-                $errstr,
-                $this->sendTimeoutSec + ($this->sendTimeoutUsec / 1000000),
-                STREAM_CLIENT_CONNECT,
-                $context
-            );
-        } catch (\Exception $e) {
-            throw new CreateSocketException($e->getMessage(), $e->getCode(), $e);
-        }
+        return stream_socket_client(
+            $remoteSocket,
+            $errno,
+            $errstr,
+            $this->sendTimeoutSec + ($this->sendTimeoutUsec / 1000000),
+            STREAM_CLIENT_CONNECT,
+            $context
+        );
     }
 
     /**
