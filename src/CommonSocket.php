@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Kafka;
 
+use Kafka\Exception\CreateSocketException;
 use const STREAM_CLIENT_CONNECT;
 use function feof;
 use function fread;
@@ -122,6 +123,7 @@ abstract class CommonSocket
 
     /**
      * @throws Exception
+     * @throws CreateSocketException
      */
     protected function createStream(): void
     {
@@ -177,17 +179,22 @@ abstract class CommonSocket
      * @param resource $context
      *
      * @return resource
+     * @throws CreateSocketException
      */
     protected function createSocket(string $remoteSocket, $context, ?int &$errno, ?string &$errstr)
     {
-        return stream_socket_client(
-            $remoteSocket,
-            $errno,
-            $errstr,
-            $this->sendTimeoutSec + ($this->sendTimeoutUsec / 1000000),
-            STREAM_CLIENT_CONNECT,
-            $context
-        );
+        try {
+            return stream_socket_client(
+                $remoteSocket,
+                $errno,
+                $errstr,
+                $this->sendTimeoutSec + ($this->sendTimeoutUsec / 1000000),
+                STREAM_CLIENT_CONNECT,
+                $context
+            );
+        } catch (\Exception $e) {
+            throw new CreateSocketException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 
     /**
