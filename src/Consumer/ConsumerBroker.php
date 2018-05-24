@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: user
- * Date: 07.05.18
- * Time: 17:55
- */
+declare(strict_types=1);
 
 namespace Kafka\Consumer;
 
